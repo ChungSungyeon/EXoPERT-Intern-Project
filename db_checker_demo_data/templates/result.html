@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    <h2>Columns</h2>
+    <ul>
+        {% for col in result['Columns'] %}
+        <li>{{ col }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Data Types</h2>
+    <ul>
+        {% for dtype in result['Data Types'] %}
+        <li>{{ dtype }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Number of Rows: {{ result['Number of Rows'] }}</h2>
+    <h2>Number of Columns: {{ result['Number of Columns'] }}</h2>
+
+    <h2>Missing Values</h2>
+    <ul>
+        {% for mv in result['Missing Values'] %}
+        <li>{{ mv }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Summary Statistics</h2>
+    <ul>
+        {% for key, value in result['Summary Statistics'].items() %}
+        <li><strong>{{ key }}</strong>: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('index') }}">Upload another file</a>
+</body>
+</html>

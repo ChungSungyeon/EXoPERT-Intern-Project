@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXoPERT DB Verification Tool</title>
+    <script type="text/javascript">
+        function uploadFile() {
+            document.getElementById('uploadForm').submit();
+        }
+    </script>
+</head>
+
+<body>
+    <h1>
+        EXoPERT DB Verification Tool
+        <small style="font-size: 0.6em; color: gray;">v1.0 - Upload and analyze DB file</small>
+    </h1>
+
+    <div class="section">
+        <div class="section-title">파일 업로드</div>
+        <form id="uploadForm" action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" onchange="uploadFile()">
+            {% if file_name %}
+            <span>{{ file_name }}</span>
+            {% endif %}
+        </form>
+    </div>
+
+
+    <div class="section">
+        <div>
+            <h2>
+                분석 기능: {{ analysis_type }}
+            </h2>
+            <button onclick="location.href='{{ url_for('summarize_db_info') }}'">기본정보 요약</button>
+            <button onclick="location.href='{{ url_for('check_error_files') }}'">에러파일 확인</button>
+            <button onclick="location.href='{{ url_for('samples_to_check') }}'">검토대상 확인</button>
+            <br>
+            <h4>
+                원인 및 요약
+            </h4>
+            <button onclick="location.href='{{ url_for('error_summary_report') }}'">오류원인 보고</button>
+            <button onclick="location.href='{{ url_for('count_user_device') }}'">유저/기기 카운트</button>
+            <button onclick="location.href='{{ url_for('detect_id_errors') }}'">ID 오류</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div>
+            <br>
+            <h4>
+                오류리포트 요약
+            </h4>
+            <textarea rows="10" cols="150" readonly>
+            {{ error_summary }}
+            </textarea>
+        </div>
+    </div>
+
+    <div class="section">
+        <div>
+            <h4>
+                분석결과 세부
+            </h4>
+            <textarea rows="50" cols="150" readonly>
+            {{ result }}
+            </textarea>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
