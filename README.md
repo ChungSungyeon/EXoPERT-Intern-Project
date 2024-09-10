@@ -9,7 +9,7 @@
 Path / ID / Chip / User / Device / File_Name / Rep / Note / Tag
 
 
-오류 요인
+### 오류 요인
 1. 데이터 자체에 오류가 생겨 Error folder로 분리시킨 경우, 확인 후 제거
 2. ID의 오기입
 3. Chip name의 오기입
